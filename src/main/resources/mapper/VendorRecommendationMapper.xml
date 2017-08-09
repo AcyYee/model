@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.acyone.model.dao.VendorRecommendationMapper">
+  <resultMap id="BaseResultMap" type="top.acyone.model.entity.VendorRecommendation">
+    <id column="vendor_recommende_id" jdbcType="INTEGER" property="vendorRecommendeId" />
+    <result column="vendor_id" jdbcType="VARCHAR" property="vendorId" />
+    <result column="vendor_recommende_name" jdbcType="VARCHAR" property="vendorRecommendeName" />
+    <result column="sequence_number" jdbcType="INTEGER" property="sequenceNumber" />
+    <result column="vendor_recommende_type" jdbcType="INTEGER" property="vendorRecommendeType" />
+    <result column="vendor_recommende_quatity" jdbcType="INTEGER" property="vendorRecommendeQuatity" />
+    <result column="vendor_recommende_icon" jdbcType="VARCHAR" property="vendorRecommendeIcon" />
+    <result column="vendor_recommende_cover" jdbcType="VARCHAR" property="vendorRecommendeCover" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="vendor_recommende_remark" jdbcType="VARCHAR" property="vendorRecommendeRemark" />
+    <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    vendor_recommende_id, vendor_id, vendor_recommende_name, sequence_number, vendor_recommende_type, 
+    vendor_recommende_quatity, vendor_recommende_icon, vendor_recommende_cover, creation_date, 
+    vendor_recommende_remark, isdelete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from et_vendor_recommendation
+    where vendor_recommende_id = #{vendorRecommendeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from et_vendor_recommendation
+    where vendor_recommende_id = #{vendorRecommendeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="top.acyone.model.entity.VendorRecommendation">
+    insert into et_vendor_recommendation (vendor_recommende_id, vendor_id, vendor_recommende_name, 
+      sequence_number, vendor_recommende_type, vendor_recommende_quatity, 
+      vendor_recommende_icon, vendor_recommende_cover, 
+      creation_date, vendor_recommende_remark, 
+      isdelete)
+    values (#{vendorRecommendeId,jdbcType=INTEGER}, #{vendorId,jdbcType=VARCHAR}, #{vendorRecommendeName,jdbcType=VARCHAR}, 
+      #{sequenceNumber,jdbcType=INTEGER}, #{vendorRecommendeType,jdbcType=INTEGER}, #{vendorRecommendeQuatity,jdbcType=INTEGER}, 
+      #{vendorRecommendeIcon,jdbcType=VARCHAR}, #{vendorRecommendeCover,jdbcType=VARCHAR}, 
+      #{creationDate,jdbcType=TIMESTAMP}, #{vendorRecommendeRemark,jdbcType=VARCHAR}, 
+      #{isdelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="top.acyone.model.entity.VendorRecommendation">
+    insert into et_vendor_recommendation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="vendorRecommendeId != null">
+        vendor_recommende_id,
+      </if>
+      <if test="vendorId != null">
+        vendor_id,
+      </if>
+      <if test="vendorRecommendeName != null">
+        vendor_recommende_name,
+      </if>
+      <if test="sequenceNumber != null">
+        sequence_number,
+      </if>
+      <if test="vendorRecommendeType != null">
+        vendor_recommende_type,
+      </if>
+      <if test="vendorRecommendeQuatity != null">
+        vendor_recommende_quatity,
+      </if>
+      <if test="vendorRecommendeIcon != null">
+        vendor_recommende_icon,
+      </if>
+      <if test="vendorRecommendeCover != null">
+        vendor_recommende_cover,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="vendorRecommendeRemark != null">
+        vendor_recommende_remark,
+      </if>
+      <if test="isdelete != null">
+        isdelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="vendorRecommendeId != null">
+        #{vendorRecommendeId,jdbcType=INTEGER},
+      </if>
+      <if test="vendorId != null">
+        #{vendorId,jdbcType=VARCHAR},
+      </if>
+      <if test="vendorRecommendeName != null">
+        #{vendorRecommendeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sequenceNumber != null">
+        #{sequenceNumber,jdbcType=INTEGER},
+      </if>
+      <if test="vendorRecommendeType != null">
+        #{vendorRecommendeType,jdbcType=INTEGER},
+      </if>
+      <if test="vendorRecommendeQuatity != null">
+        #{vendorRecommendeQuatity,jdbcType=INTEGER},
+      </if>
+      <if test="vendorRecommendeIcon != null">
+        #{vendorRecommendeIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="vendorRecommendeCover != null">
+        #{vendorRecommendeCover,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vendorRecommendeRemark != null">
+        #{vendorRecommendeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.acyone.model.entity.VendorRecommendation">
+    update et_vendor_recommendation
+    <set>
+      <if test="vendorId != null">
+        vendor_id = #{vendorId,jdbcType=VARCHAR},
+      </if>
+      <if test="vendorRecommendeName != null">
+        vendor_recommende_name = #{vendorRecommendeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sequenceNumber != null">
+        sequence_number = #{sequenceNumber,jdbcType=INTEGER},
+      </if>
+      <if test="vendorRecommendeType != null">
+        vendor_recommende_type = #{vendorRecommendeType,jdbcType=INTEGER},
+      </if>
+      <if test="vendorRecommendeQuatity != null">
+        vendor_recommende_quatity = #{vendorRecommendeQuatity,jdbcType=INTEGER},
+      </if>
+      <if test="vendorRecommendeIcon != null">
+        vendor_recommende_icon = #{vendorRecommendeIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="vendorRecommendeCover != null">
+        vendor_recommende_cover = #{vendorRecommendeCover,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vendorRecommendeRemark != null">
+        vendor_recommende_remark = #{vendorRecommendeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        isdelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where vendor_recommende_id = #{vendorRecommendeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.acyone.model.entity.VendorRecommendation">
+    update et_vendor_recommendation
+    set vendor_id = #{vendorId,jdbcType=VARCHAR},
+      vendor_recommende_name = #{vendorRecommendeName,jdbcType=VARCHAR},
+      sequence_number = #{sequenceNumber,jdbcType=INTEGER},
+      vendor_recommende_type = #{vendorRecommendeType,jdbcType=INTEGER},
+      vendor_recommende_quatity = #{vendorRecommendeQuatity,jdbcType=INTEGER},
+      vendor_recommende_icon = #{vendorRecommendeIcon,jdbcType=VARCHAR},
+      vendor_recommende_cover = #{vendorRecommendeCover,jdbcType=VARCHAR},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      vendor_recommende_remark = #{vendorRecommendeRemark,jdbcType=VARCHAR},
+      isdelete = #{isdelete,jdbcType=INTEGER}
+    where vendor_recommende_id = #{vendorRecommendeId,jdbcType=INTEGER}
+  </update>
+</mapper>

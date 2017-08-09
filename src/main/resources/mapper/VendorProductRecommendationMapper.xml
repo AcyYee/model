@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.acyone.model.dao.VendorProductRecommendationMapper">
+  <resultMap id="BaseResultMap" type="top.acyone.model.entity.VendorProductRecommendation">
+    <id column="re_vendor_product_id" jdbcType="INTEGER" property="reVendorProductId" />
+    <result column="vendor_recommende_id" jdbcType="INTEGER" property="vendorRecommendeId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="sequence_number" jdbcType="INTEGER" property="sequenceNumber" />
+    <result column="promotion_start_date" jdbcType="TIMESTAMP" property="promotionStartDate" />
+    <result column="promotion_end_date" jdbcType="TIMESTAMP" property="promotionEndDate" />
+    <result column="promotion_status" jdbcType="INTEGER" property="promotionStatus" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    re_vendor_product_id, vendor_recommende_id, product_id, sequence_number, promotion_start_date, 
+    promotion_end_date, promotion_status, creation_date, isdelete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from re_vendor_product_recommendation
+    where re_vendor_product_id = #{reVendorProductId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from re_vendor_product_recommendation
+    where re_vendor_product_id = #{reVendorProductId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="top.acyone.model.entity.VendorProductRecommendation">
+    insert into re_vendor_product_recommendation (re_vendor_product_id, vendor_recommende_id, 
+      product_id, sequence_number, promotion_start_date, 
+      promotion_end_date, promotion_status, creation_date, 
+      isdelete)
+    values (#{reVendorProductId,jdbcType=INTEGER}, #{vendorRecommendeId,jdbcType=INTEGER}, 
+      #{productId,jdbcType=INTEGER}, #{sequenceNumber,jdbcType=INTEGER}, #{promotionStartDate,jdbcType=TIMESTAMP}, 
+      #{promotionEndDate,jdbcType=TIMESTAMP}, #{promotionStatus,jdbcType=INTEGER}, #{creationDate,jdbcType=TIMESTAMP}, 
+      #{isdelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="top.acyone.model.entity.VendorProductRecommendation">
+    insert into re_vendor_product_recommendation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="reVendorProductId != null">
+        re_vendor_product_id,
+      </if>
+      <if test="vendorRecommendeId != null">
+        vendor_recommende_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="sequenceNumber != null">
+        sequence_number,
+      </if>
+      <if test="promotionStartDate != null">
+        promotion_start_date,
+      </if>
+      <if test="promotionEndDate != null">
+        promotion_end_date,
+      </if>
+      <if test="promotionStatus != null">
+        promotion_status,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="isdelete != null">
+        isdelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="reVendorProductId != null">
+        #{reVendorProductId,jdbcType=INTEGER},
+      </if>
+      <if test="vendorRecommendeId != null">
+        #{vendorRecommendeId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="sequenceNumber != null">
+        #{sequenceNumber,jdbcType=INTEGER},
+      </if>
+      <if test="promotionStartDate != null">
+        #{promotionStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="promotionEndDate != null">
+        #{promotionEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="promotionStatus != null">
+        #{promotionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.acyone.model.entity.VendorProductRecommendation">
+    update re_vendor_product_recommendation
+    <set>
+      <if test="vendorRecommendeId != null">
+        vendor_recommende_id = #{vendorRecommendeId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="sequenceNumber != null">
+        sequence_number = #{sequenceNumber,jdbcType=INTEGER},
+      </if>
+      <if test="promotionStartDate != null">
+        promotion_start_date = #{promotionStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="promotionEndDate != null">
+        promotion_end_date = #{promotionEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="promotionStatus != null">
+        promotion_status = #{promotionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null">
+        isdelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where re_vendor_product_id = #{reVendorProductId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.acyone.model.entity.VendorProductRecommendation">
+    update re_vendor_product_recommendation
+    set vendor_recommende_id = #{vendorRecommendeId,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=INTEGER},
+      sequence_number = #{sequenceNumber,jdbcType=INTEGER},
+      promotion_start_date = #{promotionStartDate,jdbcType=TIMESTAMP},
+      promotion_end_date = #{promotionEndDate,jdbcType=TIMESTAMP},
+      promotion_status = #{promotionStatus,jdbcType=INTEGER},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      isdelete = #{isdelete,jdbcType=INTEGER}
+    where re_vendor_product_id = #{reVendorProductId,jdbcType=INTEGER}
+  </update>
+</mapper>

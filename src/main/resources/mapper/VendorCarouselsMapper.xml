@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.acyone.model.dao.VendorCarouselsMapper">
+  <resultMap id="BaseResultMap" type="top.acyone.model.entity.VendorCarousels">
+    <id column="carousel_id" jdbcType="INTEGER" property="carouselId" />
+    <result column="carousel_imgurl" jdbcType="VARCHAR" property="carouselImgurl" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="notice_id" jdbcType="INTEGER" property="noticeId" />
+    <result column="page_url" jdbcType="VARCHAR" property="pageUrl" />
+    <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
+    <result column="sequence_number" jdbcType="INTEGER" property="sequenceNumber" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    carousel_id, carousel_imgurl, product_id, notice_id, page_url, isdelete, sequence_number, 
+    creation_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from et_vendor_carousels
+    where carousel_id = #{carouselId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from et_vendor_carousels
+    where carousel_id = #{carouselId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="top.acyone.model.entity.VendorCarousels">
+    insert into et_vendor_carousels (carousel_id, carousel_imgurl, product_id, 
+      notice_id, page_url, isdelete, 
+      sequence_number, creation_date)
+    values (#{carouselId,jdbcType=INTEGER}, #{carouselImgurl,jdbcType=VARCHAR}, #{productId,jdbcType=INTEGER}, 
+      #{noticeId,jdbcType=INTEGER}, #{pageUrl,jdbcType=VARCHAR}, #{isdelete,jdbcType=INTEGER}, 
+      #{sequenceNumber,jdbcType=INTEGER}, #{creationDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="top.acyone.model.entity.VendorCarousels">
+    insert into et_vendor_carousels
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="carouselId != null">
+        carousel_id,
+      </if>
+      <if test="carouselImgurl != null">
+        carousel_imgurl,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="noticeId != null">
+        notice_id,
+      </if>
+      <if test="pageUrl != null">
+        page_url,
+      </if>
+      <if test="isdelete != null">
+        isdelete,
+      </if>
+      <if test="sequenceNumber != null">
+        sequence_number,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="carouselId != null">
+        #{carouselId,jdbcType=INTEGER},
+      </if>
+      <if test="carouselImgurl != null">
+        #{carouselImgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="noticeId != null">
+        #{noticeId,jdbcType=INTEGER},
+      </if>
+      <if test="pageUrl != null">
+        #{pageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="sequenceNumber != null">
+        #{sequenceNumber,jdbcType=INTEGER},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.acyone.model.entity.VendorCarousels">
+    update et_vendor_carousels
+    <set>
+      <if test="carouselImgurl != null">
+        carousel_imgurl = #{carouselImgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="noticeId != null">
+        notice_id = #{noticeId,jdbcType=INTEGER},
+      </if>
+      <if test="pageUrl != null">
+        page_url = #{pageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        isdelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="sequenceNumber != null">
+        sequence_number = #{sequenceNumber,jdbcType=INTEGER},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where carousel_id = #{carouselId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.acyone.model.entity.VendorCarousels">
+    update et_vendor_carousels
+    set carousel_imgurl = #{carouselImgurl,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=INTEGER},
+      notice_id = #{noticeId,jdbcType=INTEGER},
+      page_url = #{pageUrl,jdbcType=VARCHAR},
+      isdelete = #{isdelete,jdbcType=INTEGER},
+      sequence_number = #{sequenceNumber,jdbcType=INTEGER},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP}
+    where carousel_id = #{carouselId,jdbcType=INTEGER}
+  </update>
+</mapper>

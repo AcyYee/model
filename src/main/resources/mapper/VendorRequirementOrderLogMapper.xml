@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.acyone.model.dao.VendorRequirementOrderLogMapper">
+  <resultMap id="BaseResultMap" type="top.acyone.model.entity.VendorRequirementOrderLog">
+    <id column="order_log_id" jdbcType="INTEGER" property="orderLogId" />
+    <result column="requirement_order_id" jdbcType="INTEGER" property="requirementOrderId" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+    <result column="vendor_id" jdbcType="VARCHAR" property="vendorId" />
+    <result column="log_description" jdbcType="VARCHAR" property="logDescription" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_log_id, requirement_order_id, openid, vendor_id, log_description, creation_date, 
+    isdelete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from re_vendor_requirement_order_log
+    where order_log_id = #{orderLogId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from re_vendor_requirement_order_log
+    where order_log_id = #{orderLogId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="top.acyone.model.entity.VendorRequirementOrderLog">
+    insert into re_vendor_requirement_order_log (order_log_id, requirement_order_id, openid, 
+      vendor_id, log_description, creation_date, 
+      isdelete)
+    values (#{orderLogId,jdbcType=INTEGER}, #{requirementOrderId,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, 
+      #{vendorId,jdbcType=VARCHAR}, #{logDescription,jdbcType=VARCHAR}, #{creationDate,jdbcType=TIMESTAMP}, 
+      #{isdelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="top.acyone.model.entity.VendorRequirementOrderLog">
+    insert into re_vendor_requirement_order_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderLogId != null">
+        order_log_id,
+      </if>
+      <if test="requirementOrderId != null">
+        requirement_order_id,
+      </if>
+      <if test="openid != null">
+        openid,
+      </if>
+      <if test="vendorId != null">
+        vendor_id,
+      </if>
+      <if test="logDescription != null">
+        log_description,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="isdelete != null">
+        isdelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderLogId != null">
+        #{orderLogId,jdbcType=INTEGER},
+      </if>
+      <if test="requirementOrderId != null">
+        #{requirementOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="vendorId != null">
+        #{vendorId,jdbcType=VARCHAR},
+      </if>
+      <if test="logDescription != null">
+        #{logDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.acyone.model.entity.VendorRequirementOrderLog">
+    update re_vendor_requirement_order_log
+    <set>
+      <if test="requirementOrderId != null">
+        requirement_order_id = #{requirementOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null">
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="vendorId != null">
+        vendor_id = #{vendorId,jdbcType=VARCHAR},
+      </if>
+      <if test="logDescription != null">
+        log_description = #{logDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null">
+        isdelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where order_log_id = #{orderLogId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.acyone.model.entity.VendorRequirementOrderLog">
+    update re_vendor_requirement_order_log
+    set requirement_order_id = #{requirementOrderId,jdbcType=INTEGER},
+      openid = #{openid,jdbcType=VARCHAR},
+      vendor_id = #{vendorId,jdbcType=VARCHAR},
+      log_description = #{logDescription,jdbcType=VARCHAR},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      isdelete = #{isdelete,jdbcType=INTEGER}
+    where order_log_id = #{orderLogId,jdbcType=INTEGER}
+  </update>
+</mapper>

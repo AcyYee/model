@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.acyone.model.dao.LogisticsCompanyMapper">
+  <resultMap id="BaseResultMap" type="top.acyone.model.entity.LogisticsCompany">
+    <id column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="company_logo" jdbcType="VARCHAR" property="companyLogo" />
+    <result column="company_location" jdbcType="VARCHAR" property="companyLocation" />
+    <result column="company_contacts_number" jdbcType="VARCHAR" property="companyContactsNumber" />
+    <result column="company_contacts" jdbcType="VARCHAR" property="companyContacts" />
+    <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
+    <result column="vendor_id" jdbcType="VARCHAR" property="vendorId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, company_name, company_logo, company_location, company_contacts_number, 
+    company_contacts, isdelete, vendor_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from et_logistics_company
+    where company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from et_logistics_company
+    where company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="top.acyone.model.entity.LogisticsCompany">
+    insert into et_logistics_company (company_id, company_name, company_logo, 
+      company_location, company_contacts_number, 
+      company_contacts, isdelete, vendor_id
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{companyName,jdbcType=VARCHAR}, #{companyLogo,jdbcType=VARCHAR}, 
+      #{companyLocation,jdbcType=VARCHAR}, #{companyContactsNumber,jdbcType=VARCHAR}, 
+      #{companyContacts,jdbcType=VARCHAR}, #{isdelete,jdbcType=INTEGER}, #{vendorId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="top.acyone.model.entity.LogisticsCompany">
+    insert into et_logistics_company
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="companyName != null">
+        company_name,
+      </if>
+      <if test="companyLogo != null">
+        company_logo,
+      </if>
+      <if test="companyLocation != null">
+        company_location,
+      </if>
+      <if test="companyContactsNumber != null">
+        company_contacts_number,
+      </if>
+      <if test="companyContacts != null">
+        company_contacts,
+      </if>
+      <if test="isdelete != null">
+        isdelete,
+      </if>
+      <if test="vendorId != null">
+        vendor_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyLogo != null">
+        #{companyLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="companyLocation != null">
+        #{companyLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="companyContactsNumber != null">
+        #{companyContactsNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="companyContacts != null">
+        #{companyContacts,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="vendorId != null">
+        #{vendorId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.acyone.model.entity.LogisticsCompany">
+    update et_logistics_company
+    <set>
+      <if test="companyName != null">
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyLogo != null">
+        company_logo = #{companyLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="companyLocation != null">
+        company_location = #{companyLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="companyContactsNumber != null">
+        company_contacts_number = #{companyContactsNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="companyContacts != null">
+        company_contacts = #{companyContacts,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        isdelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="vendorId != null">
+        vendor_id = #{vendorId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.acyone.model.entity.LogisticsCompany">
+    update et_logistics_company
+    set company_name = #{companyName,jdbcType=VARCHAR},
+      company_logo = #{companyLogo,jdbcType=VARCHAR},
+      company_location = #{companyLocation,jdbcType=VARCHAR},
+      company_contacts_number = #{companyContactsNumber,jdbcType=VARCHAR},
+      company_contacts = #{companyContacts,jdbcType=VARCHAR},
+      isdelete = #{isdelete,jdbcType=INTEGER},
+      vendor_id = #{vendorId,jdbcType=VARCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+</mapper>

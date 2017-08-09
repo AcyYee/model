@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.acyone.model.dao.ProductIntegralMapper">
+  <resultMap id="BaseResultMap" type="top.acyone.model.entity.ProductIntegral">
+    <id column="integral_id" jdbcType="INTEGER" property="integralId" />
+    <result column="vendor_id" jdbcType="VARCHAR" property="vendorId" />
+    <result column="integral_name" jdbcType="VARCHAR" property="integralName" />
+    <result column="integral" jdbcType="INTEGER" property="integral" />
+    <result column="isonline" jdbcType="INTEGER" property="isonline" />
+    <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="integral_cover" jdbcType="VARCHAR" property="integralCover" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="top.acyone.model.entity.ProductIntegral">
+    <result column="integral_dvbtxt" jdbcType="LONGVARCHAR" property="integralDvbtxt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    integral_id, vendor_id, integral_name, integral, isonline, isdelete, creation_date, 
+    integral_cover
+  </sql>
+  <sql id="Blob_Column_List">
+    integral_dvbtxt
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from et_product_integral
+    where integral_id = #{integralId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from et_product_integral
+    where integral_id = #{integralId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="top.acyone.model.entity.ProductIntegral">
+    insert into et_product_integral (integral_id, vendor_id, integral_name, 
+      integral, isonline, isdelete, 
+      creation_date, integral_cover, integral_dvbtxt
+      )
+    values (#{integralId,jdbcType=INTEGER}, #{vendorId,jdbcType=VARCHAR}, #{integralName,jdbcType=VARCHAR}, 
+      #{integral,jdbcType=INTEGER}, #{isonline,jdbcType=INTEGER}, #{isdelete,jdbcType=INTEGER}, 
+      #{creationDate,jdbcType=TIMESTAMP}, #{integralCover,jdbcType=VARCHAR}, #{integralDvbtxt,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="top.acyone.model.entity.ProductIntegral">
+    insert into et_product_integral
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="integralId != null">
+        integral_id,
+      </if>
+      <if test="vendorId != null">
+        vendor_id,
+      </if>
+      <if test="integralName != null">
+        integral_name,
+      </if>
+      <if test="integral != null">
+        integral,
+      </if>
+      <if test="isonline != null">
+        isonline,
+      </if>
+      <if test="isdelete != null">
+        isdelete,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="integralCover != null">
+        integral_cover,
+      </if>
+      <if test="integralDvbtxt != null">
+        integral_dvbtxt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="integralId != null">
+        #{integralId,jdbcType=INTEGER},
+      </if>
+      <if test="vendorId != null">
+        #{vendorId,jdbcType=VARCHAR},
+      </if>
+      <if test="integralName != null">
+        #{integralName,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null">
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="isonline != null">
+        #{isonline,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="integralCover != null">
+        #{integralCover,jdbcType=VARCHAR},
+      </if>
+      <if test="integralDvbtxt != null">
+        #{integralDvbtxt,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.acyone.model.entity.ProductIntegral">
+    update et_product_integral
+    <set>
+      <if test="vendorId != null">
+        vendor_id = #{vendorId,jdbcType=VARCHAR},
+      </if>
+      <if test="integralName != null">
+        integral_name = #{integralName,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null">
+        integral = #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="isonline != null">
+        isonline = #{isonline,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null">
+        isdelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="integralCover != null">
+        integral_cover = #{integralCover,jdbcType=VARCHAR},
+      </if>
+      <if test="integralDvbtxt != null">
+        integral_dvbtxt = #{integralDvbtxt,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where integral_id = #{integralId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="top.acyone.model.entity.ProductIntegral">
+    update et_product_integral
+    set vendor_id = #{vendorId,jdbcType=VARCHAR},
+      integral_name = #{integralName,jdbcType=VARCHAR},
+      integral = #{integral,jdbcType=INTEGER},
+      isonline = #{isonline,jdbcType=INTEGER},
+      isdelete = #{isdelete,jdbcType=INTEGER},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      integral_cover = #{integralCover,jdbcType=VARCHAR},
+      integral_dvbtxt = #{integralDvbtxt,jdbcType=LONGVARCHAR}
+    where integral_id = #{integralId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.acyone.model.entity.ProductIntegral">
+    update et_product_integral
+    set vendor_id = #{vendorId,jdbcType=VARCHAR},
+      integral_name = #{integralName,jdbcType=VARCHAR},
+      integral = #{integral,jdbcType=INTEGER},
+      isonline = #{isonline,jdbcType=INTEGER},
+      isdelete = #{isdelete,jdbcType=INTEGER},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      integral_cover = #{integralCover,jdbcType=VARCHAR}
+    where integral_id = #{integralId,jdbcType=INTEGER}
+  </update>
+</mapper>

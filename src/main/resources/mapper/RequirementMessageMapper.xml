@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.acyone.model.dao.RequirementMessageMapper">
+  <resultMap id="BaseResultMap" type="top.acyone.model.entity.RequirementMessage">
+    <id column="requirement_id" jdbcType="INTEGER" property="requirementId" />
+    <result column="expected_price" jdbcType="DECIMAL" property="expectedPrice" />
+    <result column="requirement_area" jdbcType="DECIMAL" property="requirementArea" />
+    <result column="requirement_contacts" jdbcType="VARCHAR" property="requirementContacts" />
+    <result column="requirement_contact_number" jdbcType="VARCHAR" property="requirementContactNumber" />
+    <result column="requriement_description" jdbcType="VARCHAR" property="requriementDescription" />
+    <result column="requirement_title" jdbcType="VARCHAR" property="requirementTitle" />
+    <result column="requirement_parameter" jdbcType="VARCHAR" property="requirementParameter" />
+    <result column="readers" jdbcType="INTEGER" property="readers" />
+    <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="sequence_number" jdbcType="INTEGER" property="sequenceNumber" />
+    <result column="duration_validity" jdbcType="TIMESTAMP" property="durationValidity" />
+    <result column="requirement_status" jdbcType="INTEGER" property="requirementStatus" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+    <result column="requirement_price" jdbcType="DECIMAL" property="requirementPrice" />
+    <result column="pay_status" jdbcType="INTEGER" property="payStatus" />
+    <result column="delivery_area" jdbcType="VARCHAR" property="deliveryArea" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    requirement_id, expected_price, requirement_area, requirement_contacts, requirement_contact_number, 
+    requriement_description, requirement_title, requirement_parameter, readers, isdelete, 
+    creation_date, sequence_number, duration_validity, requirement_status, openid, requirement_price, 
+    pay_status, delivery_area
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from et_requirement_message
+    where requirement_id = #{requirementId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from et_requirement_message
+    where requirement_id = #{requirementId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="top.acyone.model.entity.RequirementMessage">
+    insert into et_requirement_message (requirement_id, expected_price, requirement_area, 
+      requirement_contacts, requirement_contact_number, 
+      requriement_description, requirement_title, 
+      requirement_parameter, readers, isdelete, 
+      creation_date, sequence_number, duration_validity, 
+      requirement_status, openid, requirement_price, 
+      pay_status, delivery_area)
+    values (#{requirementId,jdbcType=INTEGER}, #{expectedPrice,jdbcType=DECIMAL}, #{requirementArea,jdbcType=DECIMAL}, 
+      #{requirementContacts,jdbcType=VARCHAR}, #{requirementContactNumber,jdbcType=VARCHAR}, 
+      #{requriementDescription,jdbcType=VARCHAR}, #{requirementTitle,jdbcType=VARCHAR}, 
+      #{requirementParameter,jdbcType=VARCHAR}, #{readers,jdbcType=INTEGER}, #{isdelete,jdbcType=INTEGER}, 
+      #{creationDate,jdbcType=TIMESTAMP}, #{sequenceNumber,jdbcType=INTEGER}, #{durationValidity,jdbcType=TIMESTAMP}, 
+      #{requirementStatus,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, #{requirementPrice,jdbcType=DECIMAL}, 
+      #{payStatus,jdbcType=INTEGER}, #{deliveryArea,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="top.acyone.model.entity.RequirementMessage">
+    insert into et_requirement_message
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="requirementId != null">
+        requirement_id,
+      </if>
+      <if test="expectedPrice != null">
+        expected_price,
+      </if>
+      <if test="requirementArea != null">
+        requirement_area,
+      </if>
+      <if test="requirementContacts != null">
+        requirement_contacts,
+      </if>
+      <if test="requirementContactNumber != null">
+        requirement_contact_number,
+      </if>
+      <if test="requriementDescription != null">
+        requriement_description,
+      </if>
+      <if test="requirementTitle != null">
+        requirement_title,
+      </if>
+      <if test="requirementParameter != null">
+        requirement_parameter,
+      </if>
+      <if test="readers != null">
+        readers,
+      </if>
+      <if test="isdelete != null">
+        isdelete,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="sequenceNumber != null">
+        sequence_number,
+      </if>
+      <if test="durationValidity != null">
+        duration_validity,
+      </if>
+      <if test="requirementStatus != null">
+        requirement_status,
+      </if>
+      <if test="openid != null">
+        openid,
+      </if>
+      <if test="requirementPrice != null">
+        requirement_price,
+      </if>
+      <if test="payStatus != null">
+        pay_status,
+      </if>
+      <if test="deliveryArea != null">
+        delivery_area,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="requirementId != null">
+        #{requirementId,jdbcType=INTEGER},
+      </if>
+      <if test="expectedPrice != null">
+        #{expectedPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="requirementArea != null">
+        #{requirementArea,jdbcType=DECIMAL},
+      </if>
+      <if test="requirementContacts != null">
+        #{requirementContacts,jdbcType=VARCHAR},
+      </if>
+      <if test="requirementContactNumber != null">
+        #{requirementContactNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="requriementDescription != null">
+        #{requriementDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="requirementTitle != null">
+        #{requirementTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="requirementParameter != null">
+        #{requirementParameter,jdbcType=VARCHAR},
+      </if>
+      <if test="readers != null">
+        #{readers,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sequenceNumber != null">
+        #{sequenceNumber,jdbcType=INTEGER},
+      </if>
+      <if test="durationValidity != null">
+        #{durationValidity,jdbcType=TIMESTAMP},
+      </if>
+      <if test="requirementStatus != null">
+        #{requirementStatus,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="requirementPrice != null">
+        #{requirementPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="payStatus != null">
+        #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryArea != null">
+        #{deliveryArea,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.acyone.model.entity.RequirementMessage">
+    update et_requirement_message
+    <set>
+      <if test="expectedPrice != null">
+        expected_price = #{expectedPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="requirementArea != null">
+        requirement_area = #{requirementArea,jdbcType=DECIMAL},
+      </if>
+      <if test="requirementContacts != null">
+        requirement_contacts = #{requirementContacts,jdbcType=VARCHAR},
+      </if>
+      <if test="requirementContactNumber != null">
+        requirement_contact_number = #{requirementContactNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="requriementDescription != null">
+        requriement_description = #{requriementDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="requirementTitle != null">
+        requirement_title = #{requirementTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="requirementParameter != null">
+        requirement_parameter = #{requirementParameter,jdbcType=VARCHAR},
+      </if>
+      <if test="readers != null">
+        readers = #{readers,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null">
+        isdelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sequenceNumber != null">
+        sequence_number = #{sequenceNumber,jdbcType=INTEGER},
+      </if>
+      <if test="durationValidity != null">
+        duration_validity = #{durationValidity,jdbcType=TIMESTAMP},
+      </if>
+      <if test="requirementStatus != null">
+        requirement_status = #{requirementStatus,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null">
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="requirementPrice != null">
+        requirement_price = #{requirementPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="payStatus != null">
+        pay_status = #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryArea != null">
+        delivery_area = #{deliveryArea,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where requirement_id = #{requirementId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.acyone.model.entity.RequirementMessage">
+    update et_requirement_message
+    set expected_price = #{expectedPrice,jdbcType=DECIMAL},
+      requirement_area = #{requirementArea,jdbcType=DECIMAL},
+      requirement_contacts = #{requirementContacts,jdbcType=VARCHAR},
+      requirement_contact_number = #{requirementContactNumber,jdbcType=VARCHAR},
+      requriement_description = #{requriementDescription,jdbcType=VARCHAR},
+      requirement_title = #{requirementTitle,jdbcType=VARCHAR},
+      requirement_parameter = #{requirementParameter,jdbcType=VARCHAR},
+      readers = #{readers,jdbcType=INTEGER},
+      isdelete = #{isdelete,jdbcType=INTEGER},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      sequence_number = #{sequenceNumber,jdbcType=INTEGER},
+      duration_validity = #{durationValidity,jdbcType=TIMESTAMP},
+      requirement_status = #{requirementStatus,jdbcType=INTEGER},
+      openid = #{openid,jdbcType=VARCHAR},
+      requirement_price = #{requirementPrice,jdbcType=DECIMAL},
+      pay_status = #{payStatus,jdbcType=INTEGER},
+      delivery_area = #{deliveryArea,jdbcType=VARCHAR}
+    where requirement_id = #{requirementId,jdbcType=INTEGER}
+  </update>
+</mapper>

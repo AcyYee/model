@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.acyone.model.dao.ForumRecommendationMapper">
+  <resultMap id="BaseResultMap" type="top.acyone.model.entity.ForumRecommendation">
+    <id column="forum_recommende_id" jdbcType="INTEGER" property="forumRecommendeId" />
+    <result column="forum_recommende_name" jdbcType="VARCHAR" property="forumRecommendeName" />
+    <result column="forum_recommende_quantity" jdbcType="INTEGER" property="forumRecommendeQuantity" />
+    <result column="sequence_number" jdbcType="INTEGER" property="sequenceNumber" />
+    <result column="forum_recommende_unit_price" jdbcType="DECIMAL" property="forumRecommendeUnitPrice" />
+    <result column="forum_recommende_unit" jdbcType="VARCHAR" property="forumRecommendeUnit" />
+    <result column="forum_recommende_icon" jdbcType="VARCHAR" property="forumRecommendeIcon" />
+    <result column="forum_recommende_cover" jdbcType="VARCHAR" property="forumRecommendeCover" />
+    <result column="forum_recommende_description" jdbcType="VARCHAR" property="forumRecommendeDescription" />
+    <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="forum_recommende_show_style" jdbcType="INTEGER" property="forumRecommendeShowStyle" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    forum_recommende_id, forum_recommende_name, forum_recommende_quantity, sequence_number, 
+    forum_recommende_unit_price, forum_recommende_unit, forum_recommende_icon, forum_recommende_cover, 
+    forum_recommende_description, isdelete, creation_date, forum_recommende_show_style
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from et_forum_recommendation
+    where forum_recommende_id = #{forumRecommendeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from et_forum_recommendation
+    where forum_recommende_id = #{forumRecommendeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="top.acyone.model.entity.ForumRecommendation">
+    insert into et_forum_recommendation (forum_recommende_id, forum_recommende_name, 
+      forum_recommende_quantity, sequence_number, 
+      forum_recommende_unit_price, forum_recommende_unit, 
+      forum_recommende_icon, forum_recommende_cover, 
+      forum_recommende_description, isdelete, creation_date, 
+      forum_recommende_show_style)
+    values (#{forumRecommendeId,jdbcType=INTEGER}, #{forumRecommendeName,jdbcType=VARCHAR}, 
+      #{forumRecommendeQuantity,jdbcType=INTEGER}, #{sequenceNumber,jdbcType=INTEGER}, 
+      #{forumRecommendeUnitPrice,jdbcType=DECIMAL}, #{forumRecommendeUnit,jdbcType=VARCHAR}, 
+      #{forumRecommendeIcon,jdbcType=VARCHAR}, #{forumRecommendeCover,jdbcType=VARCHAR}, 
+      #{forumRecommendeDescription,jdbcType=VARCHAR}, #{isdelete,jdbcType=INTEGER}, #{creationDate,jdbcType=TIMESTAMP}, 
+      #{forumRecommendeShowStyle,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="top.acyone.model.entity.ForumRecommendation">
+    insert into et_forum_recommendation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="forumRecommendeId != null">
+        forum_recommende_id,
+      </if>
+      <if test="forumRecommendeName != null">
+        forum_recommende_name,
+      </if>
+      <if test="forumRecommendeQuantity != null">
+        forum_recommende_quantity,
+      </if>
+      <if test="sequenceNumber != null">
+        sequence_number,
+      </if>
+      <if test="forumRecommendeUnitPrice != null">
+        forum_recommende_unit_price,
+      </if>
+      <if test="forumRecommendeUnit != null">
+        forum_recommende_unit,
+      </if>
+      <if test="forumRecommendeIcon != null">
+        forum_recommende_icon,
+      </if>
+      <if test="forumRecommendeCover != null">
+        forum_recommende_cover,
+      </if>
+      <if test="forumRecommendeDescription != null">
+        forum_recommende_description,
+      </if>
+      <if test="isdelete != null">
+        isdelete,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="forumRecommendeShowStyle != null">
+        forum_recommende_show_style,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="forumRecommendeId != null">
+        #{forumRecommendeId,jdbcType=INTEGER},
+      </if>
+      <if test="forumRecommendeName != null">
+        #{forumRecommendeName,jdbcType=VARCHAR},
+      </if>
+      <if test="forumRecommendeQuantity != null">
+        #{forumRecommendeQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="sequenceNumber != null">
+        #{sequenceNumber,jdbcType=INTEGER},
+      </if>
+      <if test="forumRecommendeUnitPrice != null">
+        #{forumRecommendeUnitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="forumRecommendeUnit != null">
+        #{forumRecommendeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="forumRecommendeIcon != null">
+        #{forumRecommendeIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="forumRecommendeCover != null">
+        #{forumRecommendeCover,jdbcType=VARCHAR},
+      </if>
+      <if test="forumRecommendeDescription != null">
+        #{forumRecommendeDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="forumRecommendeShowStyle != null">
+        #{forumRecommendeShowStyle,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.acyone.model.entity.ForumRecommendation">
+    update et_forum_recommendation
+    <set>
+      <if test="forumRecommendeName != null">
+        forum_recommende_name = #{forumRecommendeName,jdbcType=VARCHAR},
+      </if>
+      <if test="forumRecommendeQuantity != null">
+        forum_recommende_quantity = #{forumRecommendeQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="sequenceNumber != null">
+        sequence_number = #{sequenceNumber,jdbcType=INTEGER},
+      </if>
+      <if test="forumRecommendeUnitPrice != null">
+        forum_recommende_unit_price = #{forumRecommendeUnitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="forumRecommendeUnit != null">
+        forum_recommende_unit = #{forumRecommendeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="forumRecommendeIcon != null">
+        forum_recommende_icon = #{forumRecommendeIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="forumRecommendeCover != null">
+        forum_recommende_cover = #{forumRecommendeCover,jdbcType=VARCHAR},
+      </if>
+      <if test="forumRecommendeDescription != null">
+        forum_recommende_description = #{forumRecommendeDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        isdelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="forumRecommendeShowStyle != null">
+        forum_recommende_show_style = #{forumRecommendeShowStyle,jdbcType=INTEGER},
+      </if>
+    </set>
+    where forum_recommende_id = #{forumRecommendeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.acyone.model.entity.ForumRecommendation">
+    update et_forum_recommendation
+    set forum_recommende_name = #{forumRecommendeName,jdbcType=VARCHAR},
+      forum_recommende_quantity = #{forumRecommendeQuantity,jdbcType=INTEGER},
+      sequence_number = #{sequenceNumber,jdbcType=INTEGER},
+      forum_recommende_unit_price = #{forumRecommendeUnitPrice,jdbcType=DECIMAL},
+      forum_recommende_unit = #{forumRecommendeUnit,jdbcType=VARCHAR},
+      forum_recommende_icon = #{forumRecommendeIcon,jdbcType=VARCHAR},
+      forum_recommende_cover = #{forumRecommendeCover,jdbcType=VARCHAR},
+      forum_recommende_description = #{forumRecommendeDescription,jdbcType=VARCHAR},
+      isdelete = #{isdelete,jdbcType=INTEGER},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      forum_recommende_show_style = #{forumRecommendeShowStyle,jdbcType=INTEGER}
+    where forum_recommende_id = #{forumRecommendeId,jdbcType=INTEGER}
+  </update>
+</mapper>

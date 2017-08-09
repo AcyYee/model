@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.acyone.model.dao.WxuserProductCollectionMapper">
+  <resultMap id="BaseResultMap" type="top.acyone.model.entity.WxuserProductCollection">
+    <id column="collection_id" jdbcType="INTEGER" property="collectionId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    collection_id, product_id, isdelete, creation_date, openid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from re_wxuser_product_collection
+    where collection_id = #{collectionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from re_wxuser_product_collection
+    where collection_id = #{collectionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="top.acyone.model.entity.WxuserProductCollection">
+    insert into re_wxuser_product_collection (collection_id, product_id, isdelete, 
+      creation_date, openid)
+    values (#{collectionId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{isdelete,jdbcType=INTEGER}, 
+      #{creationDate,jdbcType=TIMESTAMP}, #{openid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="top.acyone.model.entity.WxuserProductCollection">
+    insert into re_wxuser_product_collection
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="collectionId != null">
+        collection_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="isdelete != null">
+        isdelete,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="openid != null">
+        openid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="collectionId != null">
+        #{collectionId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.acyone.model.entity.WxuserProductCollection">
+    update re_wxuser_product_collection
+    <set>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null">
+        isdelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openid != null">
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where collection_id = #{collectionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.acyone.model.entity.WxuserProductCollection">
+    update re_wxuser_product_collection
+    set product_id = #{productId,jdbcType=INTEGER},
+      isdelete = #{isdelete,jdbcType=INTEGER},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      openid = #{openid,jdbcType=VARCHAR}
+    where collection_id = #{collectionId,jdbcType=INTEGER}
+  </update>
+</mapper>

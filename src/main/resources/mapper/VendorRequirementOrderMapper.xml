@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.acyone.model.dao.VendorRequirementOrderMapper">
+  <resultMap id="BaseResultMap" type="top.acyone.model.entity.VendorRequirementOrder">
+    <id column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="requirement_id" jdbcType="INTEGER" property="requirementId" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+    <result column="vendor_id" jdbcType="VARCHAR" property="vendorId" />
+    <result column="template_id" jdbcType="INTEGER" property="templateId" />
+    <result column="delivery_price" jdbcType="DECIMAL" property="deliveryPrice" />
+    <result column="requirement_total_price" jdbcType="DECIMAL" property="requirementTotalPrice" />
+    <result column="requirement_area" jdbcType="DECIMAL" property="requirementArea" />
+    <result column="order_total_price" jdbcType="DECIMAL" property="orderTotalPrice" />
+    <result column="order_status" jdbcType="INTEGER" property="orderStatus" />
+    <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_id, requirement_id, openid, vendor_id, template_id, delivery_price, requirement_total_price, 
+    requirement_area, order_total_price, order_status, isdelete, creation_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from re_vendor_requirement_order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from re_vendor_requirement_order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="top.acyone.model.entity.VendorRequirementOrder">
+    insert into re_vendor_requirement_order (order_id, requirement_id, openid, 
+      vendor_id, template_id, delivery_price, 
+      requirement_total_price, requirement_area, 
+      order_total_price, order_status, isdelete, 
+      creation_date)
+    values (#{orderId,jdbcType=INTEGER}, #{requirementId,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, 
+      #{vendorId,jdbcType=VARCHAR}, #{templateId,jdbcType=INTEGER}, #{deliveryPrice,jdbcType=DECIMAL}, 
+      #{requirementTotalPrice,jdbcType=DECIMAL}, #{requirementArea,jdbcType=DECIMAL}, 
+      #{orderTotalPrice,jdbcType=DECIMAL}, #{orderStatus,jdbcType=INTEGER}, #{isdelete,jdbcType=INTEGER}, 
+      #{creationDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="top.acyone.model.entity.VendorRequirementOrder">
+    insert into re_vendor_requirement_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="requirementId != null">
+        requirement_id,
+      </if>
+      <if test="openid != null">
+        openid,
+      </if>
+      <if test="vendorId != null">
+        vendor_id,
+      </if>
+      <if test="templateId != null">
+        template_id,
+      </if>
+      <if test="deliveryPrice != null">
+        delivery_price,
+      </if>
+      <if test="requirementTotalPrice != null">
+        requirement_total_price,
+      </if>
+      <if test="requirementArea != null">
+        requirement_area,
+      </if>
+      <if test="orderTotalPrice != null">
+        order_total_price,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="isdelete != null">
+        isdelete,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="requirementId != null">
+        #{requirementId,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="vendorId != null">
+        #{vendorId,jdbcType=VARCHAR},
+      </if>
+      <if test="templateId != null">
+        #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryPrice != null">
+        #{deliveryPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="requirementTotalPrice != null">
+        #{requirementTotalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="requirementArea != null">
+        #{requirementArea,jdbcType=DECIMAL},
+      </if>
+      <if test="orderTotalPrice != null">
+        #{orderTotalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.acyone.model.entity.VendorRequirementOrder">
+    update re_vendor_requirement_order
+    <set>
+      <if test="requirementId != null">
+        requirement_id = #{requirementId,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null">
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="vendorId != null">
+        vendor_id = #{vendorId,jdbcType=VARCHAR},
+      </if>
+      <if test="templateId != null">
+        template_id = #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryPrice != null">
+        delivery_price = #{deliveryPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="requirementTotalPrice != null">
+        requirement_total_price = #{requirementTotalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="requirementArea != null">
+        requirement_area = #{requirementArea,jdbcType=DECIMAL},
+      </if>
+      <if test="orderTotalPrice != null">
+        order_total_price = #{orderTotalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null">
+        isdelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.acyone.model.entity.VendorRequirementOrder">
+    update re_vendor_requirement_order
+    set requirement_id = #{requirementId,jdbcType=INTEGER},
+      openid = #{openid,jdbcType=VARCHAR},
+      vendor_id = #{vendorId,jdbcType=VARCHAR},
+      template_id = #{templateId,jdbcType=INTEGER},
+      delivery_price = #{deliveryPrice,jdbcType=DECIMAL},
+      requirement_total_price = #{requirementTotalPrice,jdbcType=DECIMAL},
+      requirement_area = #{requirementArea,jdbcType=DECIMAL},
+      order_total_price = #{orderTotalPrice,jdbcType=DECIMAL},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      isdelete = #{isdelete,jdbcType=INTEGER},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+</mapper>

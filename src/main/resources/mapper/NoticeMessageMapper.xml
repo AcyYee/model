@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.acyone.model.dao.NoticeMessageMapper">
+  <resultMap id="BaseResultMap" type="top.acyone.model.entity.NoticeMessage">
+    <id column="notice_id" jdbcType="INTEGER" property="noticeId" />
+    <result column="vendor_id" jdbcType="INTEGER" property="vendorId" />
+    <result column="notice_title" jdbcType="VARCHAR" property="noticeTitle" />
+    <result column="notice_cover" jdbcType="VARCHAR" property="noticeCover" />
+    <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="notice_link" jdbcType="VARCHAR" property="noticeLink" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="top.acyone.model.entity.NoticeMessage">
+    <result column="notice_dvbtxt" jdbcType="LONGVARCHAR" property="noticeDvbtxt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    notice_id, vendor_id, notice_title, notice_cover, isdelete, creation_date, notice_link
+  </sql>
+  <sql id="Blob_Column_List">
+    notice_dvbtxt
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from et_notice_message
+    where notice_id = #{noticeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from et_notice_message
+    where notice_id = #{noticeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="top.acyone.model.entity.NoticeMessage">
+    insert into et_notice_message (notice_id, vendor_id, notice_title, 
+      notice_cover, isdelete, creation_date, 
+      notice_link, notice_dvbtxt)
+    values (#{noticeId,jdbcType=INTEGER}, #{vendorId,jdbcType=INTEGER}, #{noticeTitle,jdbcType=VARCHAR}, 
+      #{noticeCover,jdbcType=VARCHAR}, #{isdelete,jdbcType=INTEGER}, #{creationDate,jdbcType=TIMESTAMP}, 
+      #{noticeLink,jdbcType=VARCHAR}, #{noticeDvbtxt,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="top.acyone.model.entity.NoticeMessage">
+    insert into et_notice_message
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="noticeId != null">
+        notice_id,
+      </if>
+      <if test="vendorId != null">
+        vendor_id,
+      </if>
+      <if test="noticeTitle != null">
+        notice_title,
+      </if>
+      <if test="noticeCover != null">
+        notice_cover,
+      </if>
+      <if test="isdelete != null">
+        isdelete,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="noticeLink != null">
+        notice_link,
+      </if>
+      <if test="noticeDvbtxt != null">
+        notice_dvbtxt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="noticeId != null">
+        #{noticeId,jdbcType=INTEGER},
+      </if>
+      <if test="vendorId != null">
+        #{vendorId,jdbcType=INTEGER},
+      </if>
+      <if test="noticeTitle != null">
+        #{noticeTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeCover != null">
+        #{noticeCover,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noticeLink != null">
+        #{noticeLink,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeDvbtxt != null">
+        #{noticeDvbtxt,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.acyone.model.entity.NoticeMessage">
+    update et_notice_message
+    <set>
+      <if test="vendorId != null">
+        vendor_id = #{vendorId,jdbcType=INTEGER},
+      </if>
+      <if test="noticeTitle != null">
+        notice_title = #{noticeTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeCover != null">
+        notice_cover = #{noticeCover,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        isdelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noticeLink != null">
+        notice_link = #{noticeLink,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeDvbtxt != null">
+        notice_dvbtxt = #{noticeDvbtxt,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where notice_id = #{noticeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="top.acyone.model.entity.NoticeMessage">
+    update et_notice_message
+    set vendor_id = #{vendorId,jdbcType=INTEGER},
+      notice_title = #{noticeTitle,jdbcType=VARCHAR},
+      notice_cover = #{noticeCover,jdbcType=VARCHAR},
+      isdelete = #{isdelete,jdbcType=INTEGER},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      notice_link = #{noticeLink,jdbcType=VARCHAR},
+      notice_dvbtxt = #{noticeDvbtxt,jdbcType=LONGVARCHAR}
+    where notice_id = #{noticeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.acyone.model.entity.NoticeMessage">
+    update et_notice_message
+    set vendor_id = #{vendorId,jdbcType=INTEGER},
+      notice_title = #{noticeTitle,jdbcType=VARCHAR},
+      notice_cover = #{noticeCover,jdbcType=VARCHAR},
+      isdelete = #{isdelete,jdbcType=INTEGER},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      notice_link = #{noticeLink,jdbcType=VARCHAR}
+    where notice_id = #{noticeId,jdbcType=INTEGER}
+  </update>
+</mapper>

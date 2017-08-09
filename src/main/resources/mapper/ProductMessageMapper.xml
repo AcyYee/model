@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.acyone.model.dao.ProductMessageMapper">
+  <resultMap id="BaseResultMap" type="top.acyone.model.entity.ProductMessage">
+    <id column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="vendor_id" jdbcType="VARCHAR" property="vendorId" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="product_spec" jdbcType="VARCHAR" property="productSpec" />
+    <result column="product_parameter" jdbcType="VARCHAR" property="productParameter" />
+    <result column="product_unit_price" jdbcType="DECIMAL" property="productUnitPrice" />
+    <result column="product_unit" jdbcType="VARCHAR" property="productUnit" />
+    <result column="product_weight" jdbcType="DOUBLE" property="productWeight" />
+    <result column="product_carousel" jdbcType="VARCHAR" property="productCarousel" />
+    <result column="product_sales_volume" jdbcType="INTEGER" property="productSalesVolume" />
+    <result column="product_stock" jdbcType="INTEGER" property="productStock" />
+    <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
+    <result column="isonline" jdbcType="INTEGER" property="isonline" />
+    <result column="sequence_number" jdbcType="INTEGER" property="sequenceNumber" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="cc_id" jdbcType="INTEGER" property="ccId" />
+    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="top.acyone.model.entity.ProductMessage">
+    <result column="product_dvbtxt" jdbcType="LONGVARCHAR" property="productDvbtxt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    product_id, vendor_id, product_name, product_spec, product_parameter, product_unit_price, 
+    product_unit, product_weight, product_carousel, product_sales_volume, product_stock, 
+    isdelete, isonline, sequence_number, creation_date, cc_id, brand_id
+  </sql>
+  <sql id="Blob_Column_List">
+    product_dvbtxt
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from et_product_message
+    where product_id = #{productId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from et_product_message
+    where product_id = #{productId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="top.acyone.model.entity.ProductMessage">
+    insert into et_product_message (product_id, vendor_id, product_name, 
+      product_spec, product_parameter, product_unit_price, 
+      product_unit, product_weight, product_carousel, 
+      product_sales_volume, product_stock, isdelete, 
+      isonline, sequence_number, creation_date, 
+      cc_id, brand_id, product_dvbtxt
+      )
+    values (#{productId,jdbcType=INTEGER}, #{vendorId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, 
+      #{productSpec,jdbcType=VARCHAR}, #{productParameter,jdbcType=VARCHAR}, #{productUnitPrice,jdbcType=DECIMAL}, 
+      #{productUnit,jdbcType=VARCHAR}, #{productWeight,jdbcType=DOUBLE}, #{productCarousel,jdbcType=VARCHAR}, 
+      #{productSalesVolume,jdbcType=INTEGER}, #{productStock,jdbcType=INTEGER}, #{isdelete,jdbcType=INTEGER}, 
+      #{isonline,jdbcType=INTEGER}, #{sequenceNumber,jdbcType=INTEGER}, #{creationDate,jdbcType=TIMESTAMP}, 
+      #{ccId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{productDvbtxt,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="top.acyone.model.entity.ProductMessage">
+    insert into et_product_message
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="vendorId != null">
+        vendor_id,
+      </if>
+      <if test="productName != null">
+        product_name,
+      </if>
+      <if test="productSpec != null">
+        product_spec,
+      </if>
+      <if test="productParameter != null">
+        product_parameter,
+      </if>
+      <if test="productUnitPrice != null">
+        product_unit_price,
+      </if>
+      <if test="productUnit != null">
+        product_unit,
+      </if>
+      <if test="productWeight != null">
+        product_weight,
+      </if>
+      <if test="productCarousel != null">
+        product_carousel,
+      </if>
+      <if test="productSalesVolume != null">
+        product_sales_volume,
+      </if>
+      <if test="productStock != null">
+        product_stock,
+      </if>
+      <if test="isdelete != null">
+        isdelete,
+      </if>
+      <if test="isonline != null">
+        isonline,
+      </if>
+      <if test="sequenceNumber != null">
+        sequence_number,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="ccId != null">
+        cc_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="productDvbtxt != null">
+        product_dvbtxt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="vendorId != null">
+        #{vendorId,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productSpec != null">
+        #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="productParameter != null">
+        #{productParameter,jdbcType=VARCHAR},
+      </if>
+      <if test="productUnitPrice != null">
+        #{productUnitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="productUnit != null">
+        #{productUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="productWeight != null">
+        #{productWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="productCarousel != null">
+        #{productCarousel,jdbcType=VARCHAR},
+      </if>
+      <if test="productSalesVolume != null">
+        #{productSalesVolume,jdbcType=INTEGER},
+      </if>
+      <if test="productStock != null">
+        #{productStock,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="isonline != null">
+        #{isonline,jdbcType=INTEGER},
+      </if>
+      <if test="sequenceNumber != null">
+        #{sequenceNumber,jdbcType=INTEGER},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ccId != null">
+        #{ccId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="productDvbtxt != null">
+        #{productDvbtxt,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.acyone.model.entity.ProductMessage">
+    update et_product_message
+    <set>
+      <if test="vendorId != null">
+        vendor_id = #{vendorId,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productSpec != null">
+        product_spec = #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="productParameter != null">
+        product_parameter = #{productParameter,jdbcType=VARCHAR},
+      </if>
+      <if test="productUnitPrice != null">
+        product_unit_price = #{productUnitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="productUnit != null">
+        product_unit = #{productUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="productWeight != null">
+        product_weight = #{productWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="productCarousel != null">
+        product_carousel = #{productCarousel,jdbcType=VARCHAR},
+      </if>
+      <if test="productSalesVolume != null">
+        product_sales_volume = #{productSalesVolume,jdbcType=INTEGER},
+      </if>
+      <if test="productStock != null">
+        product_stock = #{productStock,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null">
+        isdelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="isonline != null">
+        isonline = #{isonline,jdbcType=INTEGER},
+      </if>
+      <if test="sequenceNumber != null">
+        sequence_number = #{sequenceNumber,jdbcType=INTEGER},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ccId != null">
+        cc_id = #{ccId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="productDvbtxt != null">
+        product_dvbtxt = #{productDvbtxt,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where product_id = #{productId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="top.acyone.model.entity.ProductMessage">
+    update et_product_message
+    set vendor_id = #{vendorId,jdbcType=VARCHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_spec = #{productSpec,jdbcType=VARCHAR},
+      product_parameter = #{productParameter,jdbcType=VARCHAR},
+      product_unit_price = #{productUnitPrice,jdbcType=DECIMAL},
+      product_unit = #{productUnit,jdbcType=VARCHAR},
+      product_weight = #{productWeight,jdbcType=DOUBLE},
+      product_carousel = #{productCarousel,jdbcType=VARCHAR},
+      product_sales_volume = #{productSalesVolume,jdbcType=INTEGER},
+      product_stock = #{productStock,jdbcType=INTEGER},
+      isdelete = #{isdelete,jdbcType=INTEGER},
+      isonline = #{isonline,jdbcType=INTEGER},
+      sequence_number = #{sequenceNumber,jdbcType=INTEGER},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      cc_id = #{ccId,jdbcType=INTEGER},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      product_dvbtxt = #{productDvbtxt,jdbcType=LONGVARCHAR}
+    where product_id = #{productId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.acyone.model.entity.ProductMessage">
+    update et_product_message
+    set vendor_id = #{vendorId,jdbcType=VARCHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_spec = #{productSpec,jdbcType=VARCHAR},
+      product_parameter = #{productParameter,jdbcType=VARCHAR},
+      product_unit_price = #{productUnitPrice,jdbcType=DECIMAL},
+      product_unit = #{productUnit,jdbcType=VARCHAR},
+      product_weight = #{productWeight,jdbcType=DOUBLE},
+      product_carousel = #{productCarousel,jdbcType=VARCHAR},
+      product_sales_volume = #{productSalesVolume,jdbcType=INTEGER},
+      product_stock = #{productStock,jdbcType=INTEGER},
+      isdelete = #{isdelete,jdbcType=INTEGER},
+      isonline = #{isonline,jdbcType=INTEGER},
+      sequence_number = #{sequenceNumber,jdbcType=INTEGER},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      cc_id = #{ccId,jdbcType=INTEGER},
+      brand_id = #{brandId,jdbcType=INTEGER}
+    where product_id = #{productId,jdbcType=INTEGER}
+  </update>
+</mapper>

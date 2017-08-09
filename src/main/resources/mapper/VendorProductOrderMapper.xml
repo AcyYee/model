@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.acyone.model.dao.VendorProductOrderMapper">
+  <resultMap id="BaseResultMap" type="top.acyone.model.entity.VendorProductOrder">
+    <id column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="vendor_id" jdbcType="VARCHAR" property="vendorId" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+    <result column="template_id" jdbcType="INTEGER" property="templateId" />
+    <result column="order_contacts" jdbcType="VARCHAR" property="orderContacts" />
+    <result column="order_contact_number" jdbcType="VARCHAR" property="orderContactNumber" />
+    <result column="order_address" jdbcType="VARCHAR" property="orderAddress" />
+    <result column="order_remark" jdbcType="VARCHAR" property="orderRemark" />
+    <result column="template_price" jdbcType="DECIMAL" property="templatePrice" />
+    <result column="discount_msg" jdbcType="VARCHAR" property="discountMsg" />
+    <result column="product_msg" jdbcType="VARCHAR" property="productMsg" />
+    <result column="total_discount_price" jdbcType="DECIMAL" property="totalDiscountPrice" />
+    <result column="total_product_price" jdbcType="DECIMAL" property="totalProductPrice" />
+    <result column="total_product_quatity" jdbcType="INTEGER" property="totalProductQuatity" />
+    <result column="order_total" jdbcType="DECIMAL" property="orderTotal" />
+    <result column="order_status" jdbcType="INTEGER" property="orderStatus" />
+    <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_id, vendor_id, openid, template_id, order_contacts, order_contact_number, order_address, 
+    order_remark, template_price, discount_msg, product_msg, total_discount_price, total_product_price, 
+    total_product_quatity, order_total, order_status, isdelete, creation_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from re_vendor_product_order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from re_vendor_product_order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="top.acyone.model.entity.VendorProductOrder">
+    insert into re_vendor_product_order (order_id, vendor_id, openid, 
+      template_id, order_contacts, order_contact_number, 
+      order_address, order_remark, template_price, 
+      discount_msg, product_msg, total_discount_price, 
+      total_product_price, total_product_quatity, 
+      order_total, order_status, isdelete, 
+      creation_date)
+    values (#{orderId,jdbcType=INTEGER}, #{vendorId,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, 
+      #{templateId,jdbcType=INTEGER}, #{orderContacts,jdbcType=VARCHAR}, #{orderContactNumber,jdbcType=VARCHAR}, 
+      #{orderAddress,jdbcType=VARCHAR}, #{orderRemark,jdbcType=VARCHAR}, #{templatePrice,jdbcType=DECIMAL}, 
+      #{discountMsg,jdbcType=VARCHAR}, #{productMsg,jdbcType=VARCHAR}, #{totalDiscountPrice,jdbcType=DECIMAL}, 
+      #{totalProductPrice,jdbcType=DECIMAL}, #{totalProductQuatity,jdbcType=INTEGER}, 
+      #{orderTotal,jdbcType=DECIMAL}, #{orderStatus,jdbcType=INTEGER}, #{isdelete,jdbcType=INTEGER}, 
+      #{creationDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="top.acyone.model.entity.VendorProductOrder">
+    insert into re_vendor_product_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="vendorId != null">
+        vendor_id,
+      </if>
+      <if test="openid != null">
+        openid,
+      </if>
+      <if test="templateId != null">
+        template_id,
+      </if>
+      <if test="orderContacts != null">
+        order_contacts,
+      </if>
+      <if test="orderContactNumber != null">
+        order_contact_number,
+      </if>
+      <if test="orderAddress != null">
+        order_address,
+      </if>
+      <if test="orderRemark != null">
+        order_remark,
+      </if>
+      <if test="templatePrice != null">
+        template_price,
+      </if>
+      <if test="discountMsg != null">
+        discount_msg,
+      </if>
+      <if test="productMsg != null">
+        product_msg,
+      </if>
+      <if test="totalDiscountPrice != null">
+        total_discount_price,
+      </if>
+      <if test="totalProductPrice != null">
+        total_product_price,
+      </if>
+      <if test="totalProductQuatity != null">
+        total_product_quatity,
+      </if>
+      <if test="orderTotal != null">
+        order_total,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="isdelete != null">
+        isdelete,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="vendorId != null">
+        #{vendorId,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="templateId != null">
+        #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="orderContacts != null">
+        #{orderContacts,jdbcType=VARCHAR},
+      </if>
+      <if test="orderContactNumber != null">
+        #{orderContactNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAddress != null">
+        #{orderAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orderRemark != null">
+        #{orderRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="templatePrice != null">
+        #{templatePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="discountMsg != null">
+        #{discountMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="productMsg != null">
+        #{productMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="totalDiscountPrice != null">
+        #{totalDiscountPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalProductPrice != null">
+        #{totalProductPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalProductQuatity != null">
+        #{totalProductQuatity,jdbcType=INTEGER},
+      </if>
+      <if test="orderTotal != null">
+        #{orderTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.acyone.model.entity.VendorProductOrder">
+    update re_vendor_product_order
+    <set>
+      <if test="vendorId != null">
+        vendor_id = #{vendorId,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="templateId != null">
+        template_id = #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="orderContacts != null">
+        order_contacts = #{orderContacts,jdbcType=VARCHAR},
+      </if>
+      <if test="orderContactNumber != null">
+        order_contact_number = #{orderContactNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAddress != null">
+        order_address = #{orderAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orderRemark != null">
+        order_remark = #{orderRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="templatePrice != null">
+        template_price = #{templatePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="discountMsg != null">
+        discount_msg = #{discountMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="productMsg != null">
+        product_msg = #{productMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="totalDiscountPrice != null">
+        total_discount_price = #{totalDiscountPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalProductPrice != null">
+        total_product_price = #{totalProductPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalProductQuatity != null">
+        total_product_quatity = #{totalProductQuatity,jdbcType=INTEGER},
+      </if>
+      <if test="orderTotal != null">
+        order_total = #{orderTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null">
+        isdelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.acyone.model.entity.VendorProductOrder">
+    update re_vendor_product_order
+    set vendor_id = #{vendorId,jdbcType=VARCHAR},
+      openid = #{openid,jdbcType=VARCHAR},
+      template_id = #{templateId,jdbcType=INTEGER},
+      order_contacts = #{orderContacts,jdbcType=VARCHAR},
+      order_contact_number = #{orderContactNumber,jdbcType=VARCHAR},
+      order_address = #{orderAddress,jdbcType=VARCHAR},
+      order_remark = #{orderRemark,jdbcType=VARCHAR},
+      template_price = #{templatePrice,jdbcType=DECIMAL},
+      discount_msg = #{discountMsg,jdbcType=VARCHAR},
+      product_msg = #{productMsg,jdbcType=VARCHAR},
+      total_discount_price = #{totalDiscountPrice,jdbcType=DECIMAL},
+      total_product_price = #{totalProductPrice,jdbcType=DECIMAL},
+      total_product_quatity = #{totalProductQuatity,jdbcType=INTEGER},
+      order_total = #{orderTotal,jdbcType=DECIMAL},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      isdelete = #{isdelete,jdbcType=INTEGER},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+</mapper>
